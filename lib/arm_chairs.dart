@@ -239,7 +239,7 @@ class _ProductWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$' + productModel.price.toString(),
+                      '\₹' + productModel.price.toString(),
                       style: GoogleFonts.varelaRound(
                         color: ColorConstants.primaryColor,
                         fontWeight: FontWeight.w600,

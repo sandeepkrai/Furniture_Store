@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_store/fire_storage.dart';
+import 'package:furniture_store/product_detail.dart';
 import 'arm_chairs.dart';
 import 'constants.dart';
 import 'product_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'about_page.dart';
+import 'searchBar.dart';
+import 'drop_down_menu.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'razorpay.dart';
 // @dart=2.9
 
@@ -53,15 +59,39 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  String dropdownvalue = 'Our Products';
+  var items = [
+    'Our Products',
+    'Armchairs',
+    'Sofas',
+    'Beds',
+    'Tables',
+  ];
+
   _buildAppBar() {
     return AppBar(
       backgroundColor: Colors.transparent,
-      title: Text(
-        'Our Products',
-        style: GoogleFonts.varelaRound(
-          color: ColorConstants.primaryColor,
-          fontWeight: FontWeight.w600,
+      title: new Theme(
+        child: new DropdownButton(
+          focusColor: Colors.blue,
+          iconEnabledColor: Colors.red,
+          style: GoogleFonts.varelaRound(
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+          ),
+          dropdownColor: Colors.blueGrey,
+          value: dropdownvalue,
+          icon: Icon(Icons.keyboard_arrow_down),
+          items: items.map((String items) {
+            return DropdownMenuItem(value: items, child: Text(items));
+          }).toList(),
+          onChanged: (String? newValue) {
+            setState(() {
+              late var dropdownvalue = newValue;
+            });
+          },
         ),
+        data: new ThemeData.dark(),
       ),
       actions: <Widget>[
         Center(
@@ -151,9 +181,9 @@ class _HomePageState extends State<HomePage> {
             child: TabBarView(
               children: [
                 _buildChairProducts(),
-                Container(),
-                Container(),
-                Container(),
+                _buildChairProducts(),
+                _buildChairProducts(),
+                _buildChairProducts(),
               ],
             ),
           )
@@ -173,35 +203,84 @@ class _HomePageState extends State<HomePage> {
             child: CarouselSlider(
               items: [
                 //1st Image of Slider
-                Container(
-                  margin: const EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    image: const DecorationImage(
-                      image: AssetImage("assets/images/4.png"),
-                      fit: BoxFit.cover,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ProductDetails(
+                        productModel: ProductModel(
+                          id: 1,
+                          imagePath: 'assets/images/1.png',
+                          price: 2400,
+                          name: 'Matteo Armchair',
+                          productType: 'Chair',
+                          description: '',
+                        ),
+                      ),
+                    ));
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/4.png"),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
 
                 //2nd Image of Slider
-                Container(
-                  margin: const EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    image: const DecorationImage(
-                      image: AssetImage("assets/images/3.png"),
-                      fit: BoxFit.cover,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ProductDetails(
+                        productModel: ProductModel(
+                          id: 1,
+                          imagePath: 'assets/images/1.png',
+                          price: 2400,
+                          name: 'Matteo Armchair',
+                          productType: 'Chair',
+                          description: '',
+                        ),
+                      ),
+                    ));
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/3.png"),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    image: const DecorationImage(
-                      image: AssetImage("assets/images/5.png"),
-                      fit: BoxFit.cover,
+                //3rd Image
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ProductDetails(
+                        productModel: ProductModel(
+                          id: 1,
+                          imagePath: 'assets/images/1.png',
+                          price: 2400,
+                          name: 'Matteo Armchair',
+                          productType: 'Chair',
+                          description: '',
+                        ),
+                      ),
+                    ));
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/5.png"),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
