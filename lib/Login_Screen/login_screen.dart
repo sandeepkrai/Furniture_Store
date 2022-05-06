@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store/home_page.dart';
-import 'package:furniture_store/home_page.dart';
 import 'package:furniture_store/product_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'registration.dart';
-
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:flutter/material.dart';
+import 'package:furniture_store/fire_storage.dart';
+import 'package:furniture_store/product_detail.dart';
+import 'package:furniture_store/arm_chairs.dart';
+import 'package:furniture_store/constants.dart';
+import 'package:furniture_store/product_model.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:furniture_store/about_page.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -23,10 +30,51 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Welcome to Furniture Store'),
-        titleTextStyle: TextStyle(color: Colors.black),
+        backgroundColor: Colors.transparent,
+        title: Text(
+          'Welcome to Furniture Store',
+          style: GoogleFonts.varelaRound(
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        actions: <Widget>[
+          Center(
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => intro(
+                          key: Key('4'),
+                        ),
+                      ),
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Card(
+                      elevation: 5,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'About Us',
+                          style: GoogleFonts.varelaRound(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.blueGrey[100],
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
@@ -54,8 +102,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 onChanged: (value) {
                   email = value;
                 },
-                decoration:
-                    kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Enter email address',
+                  contentPadding:
+                      const EdgeInsets.only(left: 14.0, bottom: 8.0, top: 8.0),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25.7),
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25.7),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 8.0,
@@ -66,8 +127,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 onChanged: (value) {
                   password = value;
                 },
-                decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter your password'),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Enter your password',
+                  contentPadding:
+                      const EdgeInsets.only(left: 14.0, bottom: 8.0, top: 8.0),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25.7),
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25.7),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 24.0,
@@ -115,6 +189,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   ));
                 },
               ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(235, 0, 0, 0),
+                child: TextButton(
+                  onPressed: () {
+                    //forgot password screen
+                  },
+                  child: const Text(
+                    'Forgot Password',
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -122,6 +207,30 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
+//
+// Theme(
+// data: Theme.of(context).copyWith(splashColor: Colors.transparent),
+// child: TextField(
+// autofocus: false,
+// style: TextStyle(fontSize: 22.0, color: Color(0xFFbdc6cf)),
+// decoration: InputDecoration(
+// filled: true,
+// fillColor: Colors.white,
+// hintText: 'Username',
+// contentPadding:
+// const EdgeInsets.only(left: 14.0, bottom: 8.0, top: 8.0),
+// focusedBorder: OutlineInputBorder(
+// borderSide: BorderSide(color: Colors.white),
+// borderRadius: BorderRadius.circular(25.7),
+// ),
+// enabledBorder: UnderlineInputBorder(
+// borderSide: BorderSide(color: Colors.white),
+// borderRadius: BorderRadius.circular(25.7),
+// ),
+// ),
+// ),
+// );
 
 // import 'package:flutter/material.dart';
 // import 'package:furniture_store/home_page.dart';
