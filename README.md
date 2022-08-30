@@ -1,6 +1,5 @@
 # furniture_store
 
-A new Flutter project.
 
 ## Guide to run this app
 
