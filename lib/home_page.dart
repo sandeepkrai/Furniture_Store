@@ -386,8 +386,8 @@ class _BestOfferWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Stack(
+        clipBehavior: Clip.none,
         alignment: Alignment.center,
-        overflow: Overflow.visible,
         children: <Widget>[
           Card(
             child: Container(
@@ -445,7 +445,7 @@ class _ChairWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      overflow: Overflow.visible,
+      clipBehavior: Clip.none,
       children: <Widget>[
         LayoutBuilder(
           builder: (context, constraints) {

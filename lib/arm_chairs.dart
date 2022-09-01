@@ -203,7 +203,7 @@ class _ProductWidget extends StatelessWidget {
           top: 50,
         ),
         child: Stack(
-          overflow: Overflow.visible,
+          clipBehavior: Clip.none,
           alignment: Alignment.center,
           children: <Widget>[
             Card(

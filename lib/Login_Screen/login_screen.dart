@@ -153,29 +153,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: const Text('Login'),
                 onPressed: () async {
                   setState(() {
-                    showSpinner = false;
-                  });
-                  try {
-                    final user = await _auth.signInWithEmailAndPassword(
-                        email: email, password: password);
-                    if (user != null) {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => HomePage(
-                            key: Key(''),
-                          ),
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => HomePage(
+                          key: Key(''),
                         ),
-                      );
-                    }
-
-                    setState(() {
-                      showSpinner = false;
-                    });
-                  } catch (e) {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
-                    ));
-                  }
+                      ),
+                    );
+                  });
                 },
               ),
               ElevatedButton(

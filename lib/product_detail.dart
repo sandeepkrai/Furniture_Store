@@ -187,8 +187,8 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   _buildAddToCart() {
     return Stack(
+      clipBehavior: Clip.none,
       alignment: Alignment.center,
-      overflow: Overflow.visible,
       children: <Widget>[
         Container(
           height: 80,
